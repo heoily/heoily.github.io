@@ -970,6 +970,19 @@ h3 {
   padding: 22px;
 }
 
+.legal-page-grid {
+  grid-template-columns: minmax(0, 880px);
+  justify-content: center;
+}
+
+.legal-page-grid .page-copy {
+  max-width: none;
+}
+
+.legal-page-grid .legal-meta {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .footer {
   background: var(--brand-dark);
   color: rgba(255, 255, 255, 0.72);
@@ -1067,6 +1080,10 @@ h3 {
   .reviews-grid,
   .footer-grid,
   .partner-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .legal-page-grid .legal-meta {
     grid-template-columns: 1fr;
   }
 }
