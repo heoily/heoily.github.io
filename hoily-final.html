@@ -1,0 +1,506 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Hoily — Heizöl deutschlandweit berechnen</title>
+<!-- Version: final-partner-uses-calculator-contact-card --><meta name="description" content="Hoily bringt Käufer und Verkäufer direkt zusammen. Heizölpreis online berechnen und per Anruf oder WhatsApp ein individuelles Angebot erhalten."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"><style>
+
+:root {
+  --brand-primary: #16724A;
+  --brand-secondary: #0E5135;
+  --brand-accent: #C9872C;
+  --brand-light: #EFF8F2;
+  --brand-soft: #DCEFE4;
+  --brand-dark: #082D20;
+  --text-primary: #14241C;
+  --text-secondary: #52635A;
+  --text-muted: #8CA098;
+  --white: #FFFFFF;
+  --border: #CFE1D6;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --shadow-sm: 0 4px 16px rgba(8,45,32,0.08);
+  --shadow-md: 0 16px 42px rgba(8,45,32,0.14);
+  --shadow-lg: 0 28px 80px rgba(8,45,32,0.28);
+
+  /* HERO BACKGROUND IMAGE — ЗАМЕНИТЕ ФОТО В ШАПКЕ ЗДЕСЬ.
+     Формат: --hero-image: url('ВАША_ССЫЛКА_НА_ФОТО_ГРУЗОВИКА_ИЛИ_ДОРОГИ');
+     Сейчас используется внешнее фото. Если фото не загрузится в локальном предпросмотре,
+     сайт всё равно покажет зелёный градиент как fallback.
+  */
+  --hero-image: url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1800&q=80');
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Outfit', sans-serif;
+  color: var(--text-primary);
+  background: radial-gradient(circle at 10% 0%, rgba(22,114,74,.08), transparent 32%), #fff;
+  line-height: 1.65;
+}
+a { color: inherit; }
+.container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+section { padding: 80px 0; }
+p { font-size: 1.04rem; color: var(--text-secondary); }
+h1 { font-size: clamp(2.15rem, 5vw, 4rem); font-weight: 800; line-height: 1.08; }
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.6rem); font-weight: 800; line-height: 1.16; }
+h3 { font-size: 1.18rem; font-weight: 700; }
+.section-label { display:inline-flex; align-items:center; gap:8px; font-size:.78rem; letter-spacing:.13em; text-transform:uppercase; font-weight:800; color:var(--brand-accent); margin-bottom:12px; }
+.section-title { margin-bottom: 16px; }
+.section-sub { max-width: 700px; margin-bottom: 42px; color: var(--text-secondary); }
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:9px; padding:14px 26px; border-radius:999px; text-decoration:none; border:1px solid transparent; font-weight:800; cursor:pointer; transition:.22s ease; }
+.btn-primary { background:var(--brand-accent); color:#fff; box-shadow:var(--shadow-sm); }
+.btn-primary:hover { transform:translateY(-1px); box-shadow:var(--shadow-md); }
+.btn-outline { background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.38); color:#fff; }
+.btn-outline:hover { background:rgba(255,255,255,.15); }
+.btn-outline-dark { background:#fff; border-color:var(--brand-primary); color:var(--brand-primary); }
+.btn-outline-dark:hover { background:var(--brand-light); }
+.topbar { background:var(--brand-dark); color:rgba(255,255,255,.86); font-size:.86rem; }
+.topbar-inner { display:flex; justify-content:space-between; gap:18px; align-items:center; flex-wrap:wrap; padding:10px 0; }
+.topbar-items { display:flex; gap:20px; align-items:center; flex-wrap:wrap; }
+.topbar a, .topbar span { color:rgba(255,255,255,.86); text-decoration:none; }
+.navbar { position:sticky; top:0; z-index:100; background:rgba(255,255,255,.94); border-bottom:1px solid var(--border); backdrop-filter:blur(14px); box-shadow:var(--shadow-sm); }
+.navbar-inner { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:15px 24px; max-width:1140px; margin:0 auto; }
+.logo { display:flex; align-items:center; gap:12px; text-decoration:none; min-width:0; }
+.logo-icon { width:44px; height:44px; border-radius:14px; background:linear-gradient(135deg,var(--brand-primary),#31A66F); color:white; display:grid; place-items:center; font-weight:900; flex-shrink:0; }
+.logo-text-main { font-size:1.35rem; font-weight:900; color:var(--brand-secondary); }
+.logo-text-sub { font-size:.72rem; color:var(--text-muted); letter-spacing:.08em; text-transform:uppercase; white-space:normal; overflow-wrap:anywhere; word-break:normal; }
+.nav-links { display:flex; gap:24px; align-items:center; list-style:none; }
+.nav-links a { color:var(--text-secondary); text-decoration:none; font-weight:700; font-size:.95rem; }
+.nav-links a:hover, .nav-links a.active { color:var(--brand-primary); }
+.nav-cta { display:flex; align-items:center; gap:12px; }
+.nav-tel { color:var(--brand-primary); text-decoration:none; font-weight:800; white-space:nowrap; }
+.hamburger { display:none; background:none; border:none; font-size:1.6rem; color:var(--brand-primary); cursor:pointer; }
+.mobile-menu { display:none; position:absolute; top:75px; left:0; right:0; background:white; border-bottom:1px solid var(--border); box-shadow:var(--shadow-md); }
+.mobile-menu.open { display:block; }
+.mobile-menu ul { list-style:none; display:flex; flex-direction:column; gap:16px; padding:18px 24px 24px; }
+.mobile-menu a { color:var(--text-secondary); text-decoration:none; font-weight:700; }
+.hero {
+  min-height: calc(100vh - 118px);
+  display:flex; align-items:center; position:relative; overflow:hidden; color:#fff;
+  background:
+    linear-gradient(110deg, rgba(8,45,32,.88) 0%, rgba(14,81,53,.70) 45%, rgba(8,45,32,.36) 100%),
+    var(--hero-image),
+    linear-gradient(135deg, var(--brand-dark), var(--brand-primary));
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+}
+.hero::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(8,45,32,.05), rgba(8,45,32,.48)); pointer-events:none; }
+.hero-inner { position:relative; z-index:1; display:grid; grid-template-columns:minmax(0,1.08fr) minmax(330px,.78fr); gap:46px; align-items:end; }
+.hero-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.22); border-radius:999px; padding:8px 16px; margin-bottom:22px; font-size:.84rem; font-weight:800; color:rgba(255,255,255,.9); max-width:100%; overflow-wrap:anywhere; }
+.hero h1 { margin-bottom:18px; max-width:760px; }
+.hero h1 span { color:#F0BE71; }
+.hero-sub { color:rgba(255,255,255,.84); max-width:650px; margin-bottom:30px; font-size:1.1rem; }
+.hero-actions { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:34px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; max-width:720px; }
+.hero-stat { background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.18); border-radius:18px; padding:18px; backdrop-filter:blur(8px); min-width:0; }
+.hero-stat-num { display:block; font-size:1.45rem; font-weight:900; color:white; overflow-wrap:anywhere; line-height:1.15; }
+.hero-stat-label { display:block; margin-top:5px; color:rgba(255,255,255,.70); font-size:.86rem; }
+.hero-card { background:rgba(255,255,255,.96); color:var(--text-primary); border-radius:var(--radius-lg); padding:30px; box-shadow:var(--shadow-lg); border:1px solid rgba(255,255,255,.45); }
+.hero-card h3 { color:var(--brand-secondary); margin-bottom:12px; }
+.info-list { list-style:none; margin:20px 0; display:flex; flex-direction:column; gap:12px; }
+.info-list li { display:flex; justify-content:space-between; gap:16px; border-bottom:1px solid var(--border); padding-bottom:11px; color:var(--text-secondary); }
+.info-list strong { color:var(--brand-secondary); text-align:right; }
+.price-box { background:var(--brand-light); border:1px solid var(--border); border-radius:20px; padding:20px; }
+.price-label { font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; color:var(--text-muted); font-weight:800; margin-bottom:8px; }
+.price-big { font-size:2.7rem; font-weight:900; color:var(--brand-secondary); line-height:1; }
+.trust-bar { background:#F7FBF8; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.trust-bar-inner { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; padding:16px 0; }
+.trust-chip { background:white; border:1px solid var(--border); border-radius:999px; padding:9px 14px; color:var(--brand-secondary); font-weight:800; font-size:.92rem; }
+.features-section { background:linear-gradient(180deg,#fff 0%,var(--brand-light) 100%); }
+.features-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+.feature-card { background:white; border:1px solid rgba(22,114,74,.18); border-radius:20px; padding:28px; box-shadow:var(--shadow-sm); transition:.22s ease; }
+.feature-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-md); }
+.feature-icon { width:50px; height:50px; background:var(--brand-light); color:var(--brand-primary); border-radius:15px; display:grid; place-items:center; font-weight:900; font-size:1.3rem; margin-bottom:18px; }
+.feature-card h3 { color:var(--brand-secondary); margin-bottom:8px; }
+.calc-section { background:linear-gradient(135deg,var(--brand-dark),var(--brand-secondary)); color:#fff; position:relative; overflow:hidden; }
+.calc-section::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 18% 12%, rgba(201,135,44,.22), transparent 31%), radial-gradient(circle at 82% 20%, rgba(255,255,255,.10), transparent 25%); pointer-events:none; }
+.calc-section .container { position:relative; z-index:1; }
+.calc-section .section-sub, .calc-section p { color:rgba(255,255,255,.78); }
+.calc-wrapper { display:grid; grid-template-columns:minmax(0,1fr) minmax(330px,.82fr); gap:30px; align-items:start; }
+.calc-box { background:white; color:var(--text-primary); border-radius:var(--radius-lg); padding:34px; box-shadow:var(--shadow-lg); }
+.calc-box h3 { color:var(--brand-secondary); margin-bottom:22px; }
+.form-group { margin-bottom:18px; }
+.form-group label { display:block; font-weight:800; color:var(--text-secondary); margin-bottom:7px; font-size:.9rem; }
+.form-group input, .form-group select { width:100%; border:1.5px solid var(--border); border-radius:12px; padding:14px 15px; font:inherit; color:var(--text-primary); background:white; }
+.form-group input[disabled], .form-group select[disabled] { background:#F7FAF8; color:#50655A; cursor:not-allowed; }
+.form-group input:focus { outline:none; border-color:var(--brand-primary); box-shadow:0 0 0 4px rgba(22,114,74,.10); }
+.form-hint { color:var(--text-muted); font-size:.84rem; margin-top:5px; }
+.calc-result { margin-top:22px; padding:22px; background:var(--brand-light); border:1px solid var(--border); border-radius:18px; display:none; }
+.result-row { display:flex; justify-content:space-between; gap:12px; padding:9px 0; border-bottom:1px solid var(--border); }
+.result-row:last-child { border-bottom:none; }
+.result-label { color:var(--text-secondary); }
+.result-val { color:var(--brand-secondary); font-weight:900; text-align:right; }
+.result-total .result-val { color:var(--brand-accent); font-size:1.35rem; }
+.calc-info { display:grid; gap:16px; }
+.step-card { background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.16); border-radius:20px; padding:22px; }
+.step-card h3 { color:#fff; margin-bottom:7px; }
+.contact-card { background:white; color:var(--text-primary); border-radius:20px; padding:26px; box-shadow:var(--shadow-md); }
+.contact-card p { color:var(--text-secondary); }
+.contact-list { list-style:none; display:flex; flex-direction:column; gap:14px; margin:18px 0; }
+.contact-list li { display:flex; gap:12px; align-items:flex-start; color:var(--text-secondary); }
+.contact-list strong { display:block; color:var(--brand-secondary); font-size:.84rem; letter-spacing:.08em; text-transform:uppercase; }
+.contact-list a { text-decoration:none; color:var(--brand-primary); font-weight:800; }
+.reviews-section { background:#fff; }
+.reviews-header { text-align:center; margin-bottom:46px; }
+.reviews-platforms { display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-top:22px; }
+.platform-badge { display:flex; align-items:center; gap:8px; padding:10px 18px; border:1px solid var(--border); border-radius:999px; background:white; color:var(--brand-secondary); font-weight:800; }
+.reviews-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+.review-card { background:white; border:1px solid rgba(22,114,74,.18); border-radius:20px; padding:26px; box-shadow:var(--shadow-sm); }
+.review-top { display:flex; align-items:center; gap:14px; margin-bottom:14px; }
+.reviewer-avatar { width:46px; height:46px; border-radius:50%; display:grid; place-items:center; color:white; font-weight:900; }
+.reviewer-name { color:var(--brand-secondary); font-weight:800; }
+.review-source, .review-date { color:var(--text-muted); font-size:.8rem; }
+.review-stars { color:#F59E0B; margin-bottom:10px; letter-spacing:1px; }
+.review-text { font-family:'Source Serif 4', serif; font-style:italic; color:var(--text-secondary); font-size:.95rem; }
+.faq-section { background:linear-gradient(180deg,var(--brand-light) 0%,#fff 100%); }
+.faq-layout { display:grid; gap:14px; max-width:900px; }
+.faq-item { background:white; border:1px solid rgba(22,114,74,.18); border-radius:18px; box-shadow:var(--shadow-sm); overflow:hidden; }
+.faq-question { width:100%; border:none; background:white; padding:21px 24px; display:flex; align-items:center; justify-content:space-between; gap:18px; text-align:left; cursor:pointer; font:inherit; font-weight:800; color:var(--brand-secondary); }
+.faq-question span:first-child { overflow-wrap:anywhere; }
+.faq-question span:last-child { font-size:1.5rem; color:var(--brand-primary); flex-shrink:0; }
+.faq-answer { display:none; padding:0 24px 24px; }
+.faq-answer p { color:var(--text-secondary); }
+.faq-item.active .faq-answer { display:block; }
+.faq-item.active .faq-question { background:var(--brand-light); }
+.info-links { background:linear-gradient(135deg,#fff,var(--brand-light)); border-top:1px solid var(--border); }
+.link-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+.link-card { display:block; background:white; border:1px solid rgba(22,114,74,.18); border-radius:20px; padding:24px; text-decoration:none; box-shadow:var(--shadow-sm); transition:.22s ease; }
+.link-card:hover { transform:translateY(-2px); box-shadow:var(--shadow-md); }
+.link-card h3 { color:var(--brand-secondary); margin-bottom:7px; }
+.page-hero { background:linear-gradient(135deg,var(--brand-dark),var(--brand-secondary)); color:white; padding:76px 0 62px; }
+.page-hero p { color:rgba(255,255,255,.80); max-width:800px; }
+.page-content { padding:72px 0; }
+.text-page { max-width:880px; }
+.text-page h2 { color:var(--brand-secondary); margin:34px 0 12px; }
+.text-page h3 { color:var(--brand-secondary); margin:26px 0 10px; }
+.text-page ul { padding-left:22px; color:var(--text-secondary); }
+.text-page li { margin:8px 0; }
+.footer { background:var(--brand-dark); color:rgba(255,255,255,.72); padding:54px 0 28px; }
+.footer-grid { display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:34px; margin-bottom:34px; }
+.footer-logo-text { color:white; font-size:1.45rem; font-weight:900; margin-bottom:10px; }
+.footer h4 { color:white; text-transform:uppercase; letter-spacing:.08em; font-size:.86rem; margin-bottom:14px; }
+.footer p { color:rgba(255,255,255,.72); font-size:.94rem; }
+.footer ul { list-style:none; display:flex; flex-direction:column; gap:9px; }
+.footer a { color:rgba(255,255,255,.72); text-decoration:none; }
+.footer a:hover { color:white; }
+.footer-bottom { display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; border-top:1px solid rgba(255,255,255,.12); padding-top:20px; font-size:.85rem; }
+@media (max-width: 1000px) {
+  .hero-inner, .calc-wrapper { grid-template-columns:1fr; }
+  .features-grid, .reviews-grid, .footer-grid { grid-template-columns:1fr 1fr; }
+}
+@media (max-width: 860px) {
+  .nav-links, .nav-cta .btn { display:none; }
+  .hamburger { display:block; }
+  .nav-cta { margin-left:auto; }
+  .hero { min-height:auto; padding:74px 0; }
+  .hero-stats, .features-grid, .reviews-grid, .footer-grid, .link-grid { grid-template-columns:1fr; }
+}
+@media (max-width: 600px) {
+  section { padding:58px 0; }
+  .container { padding:0 18px; }
+  .navbar-inner { padding:13px 18px; }
+  .topbar-inner { gap:8px; }
+  .topbar-items { gap:10px; }
+  .hero-actions { flex-direction:column; align-items:stretch; }
+  .hero-card, .calc-box { padding:24px; }
+  .info-list li, .result-row { flex-direction:column; gap:3px; }
+  .info-list strong, .result-val { text-align:left; }
+}
+
+
+/* PARTNER BLOCK PATCH — финальный блок вместо ссылок */
+.partner-section {
+  background:
+    radial-gradient(circle at 12% 10%, rgba(22,114,74,.10), transparent 30%),
+    linear-gradient(135deg, #FFFFFF 0%, var(--brand-light) 100%);
+  border-top: 1px solid var(--border);
+}
+.partner-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .92fr) minmax(320px, 1.08fr);
+  gap: 34px;
+  align-items: start;
+}
+.partner-copy {
+  background: white;
+  border: 1px solid rgba(22,114,74,.18);
+  border-radius: var(--radius-lg);
+  padding: 34px;
+  box-shadow: var(--shadow-sm);
+}
+.partner-copy ul {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
+}
+.partner-copy li {
+  display: flex;
+  gap: 10px;
+  color: var(--text-secondary);
+}
+.partner-copy li::before {
+  content: '✓';
+  color: var(--brand-primary);
+  font-weight: 900;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group textarea {
+  width: 100%;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 15px;
+  font: inherit;
+  color: var(--text-primary);
+  background: white;
+  min-height: 110px;
+  resize: vertical;
+}
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 4px rgba(22,114,74,.10);
+}
+.partner-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 6px; }
+@media (max-width: 900px) {
+  .partner-grid, .form-row { grid-template-columns: 1fr; }
+}
+
+</style></head><body>
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-inner">
+      <div class="topbar-items">
+        <a href="tel:+490000000000">Telefon: 00000 - 00 00 0</a>
+        <a href="https://wa.me/490000000000" target="_blank" rel="noopener">WhatsApp: 00000 - 00 00 0</a>
+      </div>
+      <div class="topbar-items">
+        <span>24/7 erreichbar</span>
+      </div>
+    </div>
+  </div>
+</div>
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">H</div>
+      <div>
+        <div class="logo-text-main">Hoily</div>
+        <div class="logo-text-sub">Deutschlandweit</div>
+      </div>
+    </a>
+    <ul class="nav-links"><li><a href="index.html" class="active">Startseite</a></li><li><a href="index.html#rechner" class="">Preisrechner</a></li><li><a href="ueber-uns.html" class="">Über uns</a></li><li><a href="#lieferant-werden" class="">Partner werden</a></li><li><a href="index.html#faq" class="">FAQ</a></li><li><a href="index.html#kontakt" class="">Kontakt</a></li></ul>
+    <div class="nav-cta">
+      <a class="nav-tel" href="tel:+490000000000">00000 - 00 00 0</a>
+      <a href="index.html#rechner" class="btn btn-primary">Preis berechnen</a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menü öffnen">☰</button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu"><ul><li><a href="index.html">Startseite</a></li><li><a href="index.html#rechner">Preisrechner</a></li><li><a href="ueber-uns.html">Über uns</a></li><li><a href="#lieferant-werden">Partner werden</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="index.html#kontakt">Kontakt</a></li></ul></div>
+</nav>
+<section class="hero" id="start">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">Deutschlandweit — in jede Stadt</div>
+        <h1>Hoily: Heizöl zu <span>fairen Preisen</span> deutschlandweit.</h1>
+        <p class="hero-sub">Wir bringen Käufer und Verkäufer direkt zusammen. Berechnen Sie Ihren Preis online und kontaktieren Sie uns anschließend per Anruf oder WhatsApp für ein individuelles Angebot.</p>
+        <div class="hero-actions"><a href="#rechner" class="btn btn-primary">Preis berechnen</a><a href="https://wa.me/490000000000" target="_blank" rel="noopener" class="btn btn-outline">WhatsApp schreiben</a></div>
+        <div class="hero-stats"><div class="hero-stat"><span class="hero-stat-num">Deutschlandweit</span><span class="hero-stat-label">Lieferung in jede Stadt</span></div><div class="hero-stat"><span class="hero-stat-num">500 L</span><span class="hero-stat-label">Mindestmenge</span></div><div class="hero-stat"><span class="hero-stat-num">24/7</span><span class="hero-stat-label">Kontakt per Telefon & WhatsApp</span></div></div>
+      </div>
+      <div class="hero-card">
+        <h3>Aktueller Rechner</h3>
+        <p>Klare Berechnung ohne Lieferzonen-Auswahl und ohne komplizierte Formularstrecke.</p>
+        <ul class="info-list"><li><span>Heizöl-Typ</span><strong>Standard-Heizöl</strong></li><li><span>Liefergebiet</span><strong>Deutschlandweit</strong></li><li><span>Kontakt</span><strong>Anruf oder WhatsApp</strong></li><li><span>Angebot</span><strong>Individuell nach Adresse</strong></li></ul>
+        <div class="price-box"><div class="price-label">Preis im Rechner</div><div class="price-big">0,70 €</div><p>pro Liter inkl. MwSt.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="trust-bar"><div class="container"><div class="trust-bar-inner"><div class="trust-chip">Deutschlandweit</div><div class="trust-chip">Standard-Heizöl</div><div class="trust-chip">Preis inkl. MwSt.</div><div class="trust-chip">Anruf & WhatsApp</div><div class="trust-chip">Individuelles Angebot</div></div></div></div>
+<section class="features-section" id="leistungen"><div class="container"><div class="section-label">Unsere Leistungen</div><h2 class="section-title">Warum Hoily?</h2><p class="section-sub">Hoily ist keine klassische lokale Lieferseite, sondern eine direkte Vermittlungsplattform: Käufer und Verkäufer kommen schneller zusammen, ohne unnötige Zwischenschritte.</p><div class="features-grid"><div class="feature-card"><div class="feature-icon">1</div><h3>Deutschlandweite Vermittlung</h3><p>Wir organisieren Anfragen deutschlandweit und verbinden Kunden mit passenden Liefermöglichkeiten in ihrer Stadt.</p></div><div class="feature-card"><div class="feature-icon">2</div><h3>Transparenter Rechner</h3><p>Der Rechner arbeitet mit einem klaren Literpreis inkl. MwSt. und zeigt Ihnen sofort eine nachvollziehbare Orientierung.</p></div><div class="feature-card"><div class="feature-icon">3</div><h3>Direkte Abstimmung</h3><p>Nach der Berechnung klären wir Ihr Anliegen und Ihre Adresse per Anruf oder WhatsApp und erstellen ein individuelles Angebot.</p></div></div></div></section>
+<section class="calc-section" id="rechner"><div class="container"><div class="section-label">Preisrechner</div><h2 class="section-title">Heizölpreis online berechnen</h2><p class="section-sub">Geben Sie die gewünschte Menge ein. Der Preis wird automatisch inkl. 19% MwSt. berechnet.</p><div class="calc-wrapper"><div class="calc-box"><h3>Preis berechnen</h3><div class="form-group"><label>Heizöl-Typ</label><input type="text" value="Standard-Heizöl" disabled></div><div class="form-group"><label>Preis pro Liter</label><input type="text" value="0,70 € / Liter inkl. MwSt." disabled></div><div class="form-group"><label for="c-liters">Menge in Litern</label><input type="number" id="c-liters" min="500" step="50" placeholder="z. B. 1500" oninput="calcPrice()"><div class="form-hint">Mindestmenge: 500 Liter</div></div><div id="calc-result" class="calc-result"><div class="result-row"><span class="result-label">Menge</span><span class="result-val" id="res-liters">—</span></div><div class="result-row"><span class="result-label">Preis pro Liter</span><span class="result-val" id="res-price">—</span></div><div class="result-row result-total"><span class="result-label">Gesamtpreis inkl. 19% MwSt.</span><span class="result-val" id="res-total">—</span></div><div class="result-row"><span class="result-label">MwSt.</span><span class="result-val" id="res-vat">—</span></div></div></div><div class="calc-info"><div class="step-card"><h3>1. Preis berechnen</h3><p>Berechnen Sie Ihren Preis mit unserem Rechner.</p></div><div class="step-card"><h3>2. Kontakt aufnehmen</h3><p>Kontaktieren Sie uns per Anruf oder WhatsApp mit Ihrem Anliegen und der Adresse.</p></div><div class="step-card"><h3>3. Angebot erhalten</h3><p>Anschließend erhalten Sie von uns ein individuelles Angebot.</p></div><div class="contact-card" id="kontakt"><h3>Kontakt</h3><p>Wir sind telefonisch und per WhatsApp erreichbar.</p><ul class="contact-list"><li><div><strong>Telefon</strong><a href="tel:+490000000000">00000 - 00 00 0</a></div></li><li><div><strong>WhatsApp</strong><a href="https://wa.me/490000000000" target="_blank" rel="noopener">00000 - 00 00 0</a></div></li><li><div><strong>Erreichbarkeit</strong><span>24/7 erreichbar</span></div></li><li><div><strong>Adresse</strong><span>Schwabenstieg 4, 22455 Hamburg</span></div></li></ul><div style="display:flex; gap:12px; flex-wrap:wrap;"><a class="btn btn-primary" href="tel:+490000000000">Anrufen</a><a class="btn btn-outline-dark" href="https://wa.me/490000000000" target="_blank" rel="noopener">WhatsApp</a></div></div></div></div></div></section>
+<section class="reviews-section" id="bewertungen"><div class="container"><div class="reviews-header"><div class="section-label">Kundenstimmen</div><h2 class="section-title">Was unsere Kunden sagen</h2><p>Beispielhafte Bewertungen auf Google und Trustpilot.</p><div class="reviews-platforms"><div class="platform-badge"><span>⭐⭐⭐⭐⭐</span><span>4,8 / 5 auf <strong>Google</strong></span></div><div class="platform-badge"><span>⭐⭐⭐⭐⭐</span><span>4,7 / 5 auf <strong>Trustpilot</strong></span></div></div></div><div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-top"><div class="reviewer-avatar" style="background:#1A3A5C;">TH</div><div><div class="reviewer-name">Thomas H.</div><div class="review-source">Google ★ verifiziert</div></div></div>
+        <div class="review-stars">★★★★★</div><p class="review-text">„Schon zum dritten Mal bestellt und jedes Mal absolut reibungslos. Der Fahrer war pünktlich, freundlich und hat den Tank sauber befüllt — ohne einen Tropfen Ölverlust. Preislich absolut fair, keine versteckten Kosten. Gerne wieder.“</p><div class="review-date">vor 2 Wochen</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-top"><div class="reviewer-avatar" style="background:#E8600A;">SK</div><div><div class="reviewer-name">Sandra K.</div><div class="review-source">Trustpilot ★ verifiziert</div></div></div>
+        <div class="review-stars">★★★★★</div><p class="review-text">„Endlich ein Heizölanbieter, bei dem man sich auf den angekündigten Termin verlassen kann! Bestellung war kinderleicht, Bestätigungsmail kam sofort und der Fahrer meldete sich noch am Morgen der Lieferung. Top Kommunikation von Anfang bis Ende.“</p><div class="review-date">vor 1 Monat</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-top"><div class="reviewer-avatar" style="background:#1D7A4A;">MV</div><div><div class="reviewer-name">Michael V.</div><div class="review-source">Google ★ verifiziert</div></div></div>
+        <div class="review-stars">★★★★★</div><p class="review-text">„Preis-Leistungs-Verhältnis ist sehr gut. Habe Angebote von drei Anbietern verglichen — Hoily lag klar vorne. Bestellung über die Webseite in fünf Minuten erledigt. Lieferung kam zwei Tage später wie versprochen. Sehr empfehlenswert.“</p><div class="review-date">vor 3 Wochen</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-top"><div class="reviewer-avatar" style="background:#533AB7;">AP</div><div><div class="reviewer-name">Anna P.</div><div class="review-source">Trustpilot ★ verifiziert</div></div></div>
+        <div class="review-stars">★★★★★</div><p class="review-text">„Als der Tank unerwartet leer war, hat Hoily noch am gleichen Tag geholfen. Das nenne ich Service! Der Ansprechpartner am Telefon war hilfsbereit und hat alles schnell organisiert.“</p><div class="review-date">vor 2 Monaten</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-top"><div class="reviewer-avatar" style="background:#BA7517;">RB</div><div><div class="reviewer-name">Ralf B.</div><div class="review-source">Google ★ verifiziert</div></div></div>
+        <div class="review-stars">★★★★★</div><p class="review-text">„Nutze Hoily jetzt seit zwei Jahren. Was mich überzeugt: die Verlässlichkeit. Jeden Winter, pünktlich, kein Stress. Der Online-Rechner ist übersichtlich — und der Preis stimmt.“</p><div class="review-date">vor 5 Wochen</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-top"><div class="reviewer-avatar" style="background:#0F6E56;">KL</div><div><div class="reviewer-name">Kathrin L.</div><div class="review-source">Trustpilot ★ verifiziert</div></div></div>
+        <div class="review-stars">★★★★☆</div><p class="review-text">„Sehr nettes Team und gute Preise. Die Lieferung hat einmal etwas länger gedauert als angegeben, aber auf Nachfrage wurde ich sofort informiert. Guter Umgang mit kleinen Komplikationen — das zählt für mich.“</p><div class="review-date">vor 6 Wochen</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-top"><div class="reviewer-avatar" style="background:#993C1D;">HM</div><div><div class="reviewer-name">Hans M.</div><div class="review-source">Google ★ verifiziert</div></div></div>
+        <div class="review-stars">★★★★★</div><p class="review-text">„Ich habe für unsere Landwirtschaft schon mehrere tausend Liter bestellt. Die Abwicklung ist immer professionell, der Preis fair und das Heizöl von guter Qualität.“</p><div class="review-date">vor 2 Monaten</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-top"><div class="reviewer-avatar" style="background:#D4537E;">JF</div><div><div class="reviewer-name">Julia F.</div><div class="review-source">Trustpilot ★ verifiziert</div></div></div>
+        <div class="review-stars">★★★★★</div><p class="review-text">„Super unkompliziert! Online berechnet, telefonisch abgestimmt, zwei Tage später voller Tank. Der Fahrer war freundlich und hat erklärt, was er macht.“</p><div class="review-date">vor 3 Monaten</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-top"><div class="reviewer-avatar" style="background:#185FA5;">GS</div><div><div class="reviewer-name">Georg S.</div><div class="review-source">Google ★ verifiziert</div></div></div>
+        <div class="review-stars">★★★★★</div><p class="review-text">„Gutes Preis-Leistungs-Verhältnis, schnelle Bearbeitung und ein höflicher Fahrer. Was will man mehr? Ich vergleiche die Preise jedes Jahr — klare Empfehlung.“</p><div class="review-date">vor 4 Wochen</div>
+      </div></div></div></section>
+<section class="faq-section" id="faq"><div class="container"><div class="section-label">FAQ</div><h2 class="section-title">Häufige Fragen zum Thema Heizöl</h2><p class="section-sub">Die wichtigsten Fragen als aufklappbare Antworten.</p><div class="faq-layout">
+      <div class="faq-item active">
+        <button class="faq-question" type="button"><span>Was kostet ein Liter Heizöl heute?</span><span>−</span></button>
+        <div class="faq-answer"><p>Der Rechner zeigt den hinterlegten Preis pro Liter für Standard-Heizöl. Der angezeigte Preis versteht sich inkl. 19% MwSt. und wird automatisch auf Ihre gewünschte Literzahl hochgerechnet.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" type="button"><span>Liefern Sie deutschlandweit?</span><span>+</span></button>
+        <div class="faq-answer"><p>Ja. Hoily ist als Vermittlungsplattform aufgebaut und bringt Käufer und Verkäufer direkt zusammen — deutschlandweit, in jede Stadt. Die konkrete Lieferung wird anschließend individuell angeboten.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" type="button"><span>Welche Heizöl-Sorte wird berechnet?</span><span>+</span></button>
+        <div class="faq-answer"><p>Im Rechner bleibt es bewusst einfach: berechnet wird Standard-Heizöl. Weitere Varianten können bei Bedarf telefonisch oder per WhatsApp besprochen werden.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" type="button"><span>Wie läuft die Anfrage ab?</span><span>+</span></button>
+        <div class="faq-answer"><p>Sie berechnen zuerst Ihren Preis, kontaktieren uns anschließend per Anruf oder WhatsApp mit Anliegen und Adresse und erhalten danach ein individuelles Angebot.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" type="button"><span>Ist der Preis im Rechner bindend?</span><span>+</span></button>
+        <div class="faq-answer"><p>Der Rechner dient als transparente Orientierung. Das individuelle Angebot erhalten Sie anschließend nach Kontaktaufnahme und Prüfung Ihrer Adresse.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" type="button"><span>Wie schnell kann geliefert werden?</span><span>+</span></button>
+        <div class="faq-answer"><p>Die Lieferzeit hängt vom verfügbaren regionalen Partner und Ihrer Adresse ab. Nach Ihrer Anfrage erhalten Sie ein konkretes Angebot mit den nächsten Schritten.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" type="button"><span>Warum brauche ich die Adresse für das Angebot?</span><span>+</span></button>
+        <div class="faq-answer"><p>Die Adresse ist notwendig, damit ein passender Lieferpartner und die tatsächlichen Lieferbedingungen geprüft werden können.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" type="button"><span>Wie erreiche ich Hoily?</span><span>+</span></button>
+        <div class="faq-answer"><p>Sie erreichen Hoily telefonisch oder per WhatsApp unter der angegebenen Nummer. Die Kontaktmöglichkeit ist 24/7 erreichbar.</p></div>
+      </div></div></div></section>
+<section class="partner-section" id="lieferant-werden">
+  <div class="container">
+    <div class="partner-grid">
+      <div class="partner-copy">
+        <div class="section-label">Partner werden</div>
+        <h2 class="section-title">Werden Sie Anbieter im Hoily-Netzwerk</h2>
+        <p>Hoily bringt Käufer und Verkäufer direkt zusammen. Wenn Sie Heizöl anbieten, regionale Lieferkapazitäten haben oder als Transportpartner arbeiten, kontaktieren Sie uns direkt per Anruf oder WhatsApp.</p>
+        <ul>
+          <li>Deutschlandweite Nachfrage nach Heizöl</li>
+          <li>Direkte Abstimmung per Telefon oder WhatsApp</li>
+          <li>Klare Anfrage mit Menge, Anliegen und Adresse</li>
+          <li>Individuelle Angebotsabgabe durch passende Partner</li>
+        </ul>
+      </div>
+      <div class="contact-card partner-contact-card"><h3>Kontakt</h3><p>Wir sind telefonisch und per WhatsApp erreichbar.</p><ul class="contact-list"><li><div><strong>Telefon</strong><a href="tel:+490000000000">00000 - 00 00 0</a></div></li><li><div><strong>WhatsApp</strong><a href="https://wa.me/490000000000" target="_blank" rel="noopener">00000 - 00 00 0</a></div></li><li><div><strong>Erreichbarkeit</strong><span>24/7 erreichbar</span></div></li><li><div><strong>Adresse</strong><span>Schwabenstieg 4, 22455 Hamburg</span></div></li></ul><div style="display:flex; gap:12px; flex-wrap:wrap;"><a class="btn btn-primary" href="tel:+490000000000">Anrufen</a><a class="btn btn-outline-dark" href="https://wa.me/490000000000" target="_blank" rel="noopener">WhatsApp</a></div>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo-text">Hoily</div>
+        <p>Hoily bringt Käufer und Verkäufer direkt zusammen — für Heizöl zu fairen Preisen, deutschlandweit in jede Stadt.</p>
+        <p style="margin-top:16px;">Schwabenstieg 4, 22455 Hamburg<br>Telefon: <a href="tel:+490000000000">00000 - 00 00 0</a><br>WhatsApp: <a href="https://wa.me/490000000000" target="_blank" rel="noopener">00000 - 00 00 0</a><br>24/7 erreichbar</p>
+      </div>
+      <div><h4>Navigation</h4><ul><li><a href="index.html">Startseite</a></li><li><a href="index.html#rechner">Preisrechner</a></li><li><a href="ueber-uns.html">Über uns</a></li><li><a href="#lieferant-werden">Partner werden</a></li><li><a href="index.html#kontakt">Kontakt</a></li></ul></div>
+      <div><h4>Infos</h4><ul><li><a href="impressum.html">Impressum</a></li><li><a href="datenschutz.html">Datenschutzerklärung</a></li><li><a href="agb.html">AGB</a></li></ul></div>
+      <div><h4>Kontakt</h4><ul><li><a href="tel:+490000000000">00000 - 00 00 0</a></li><li><a href="https://wa.me/490000000000" target="_blank" rel="noopener">WhatsApp schreiben</a></li><li><a href="index.html#faq">FAQ</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Hoily. Alle Rechte vorbehalten.</span>
+      <div style="display:flex; gap:18px; flex-wrap:wrap;"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const PRICE_PER_LITER = 0.70; // Preis inkl. 19% MwSt.
+const MIN_LITERS = 500;
+
+function formatCurrency(value) {
+  return value.toLocaleString('de-DE', { style: 'currency', currency: 'EUR', minimumFractionDigits: 2 });
+}
+
+function calcPrice() {
+  const litersInput = document.getElementById('c-liters');
+  const resultBox = document.getElementById('calc-result');
+  if (!litersInput || !resultBox) return;
+  const liters = parseFloat(litersInput.value);
+  if (!liters || liters < MIN_LITERS) {
+    resultBox.style.display = 'none';
+    litersInput.style.borderColor = liters && liters < MIN_LITERS ? '#D14D3F' : '';
+    return;
+  }
+  litersInput.style.borderColor = '#16724A';
+  const total = liters * PRICE_PER_LITER;
+  const vat = total - total / 1.19;
+  document.getElementById('res-liters').textContent = liters.toLocaleString('de-DE') + ' Liter';
+  document.getElementById('res-price').textContent = formatCurrency(PRICE_PER_LITER) + ' / Liter inkl. MwSt.';
+  document.getElementById('res-total').textContent = formatCurrency(total);
+  document.getElementById('res-vat').textContent = 'Enthaltene 19% MwSt.: ' + formatCurrency(vat);
+  resultBox.style.display = 'block';
+}
+
+function toggleMenu() {
+  const menu = document.getElementById('mobile-menu');
+  if (menu) menu.classList.toggle('open');
+}
+
+document.addEventListener('click', (e) => {
+  const faqButton = e.target.closest('.faq-question');
+  if (faqButton) {
+    const item = faqButton.closest('.faq-item');
+    item.classList.toggle('active');
+    const sign = item.querySelector('.faq-question span:last-child');
+    if (sign) sign.textContent = item.classList.contains('active') ? '−' : '+';
+  }
+  if (!e.target.closest('.navbar')) {
+    const menu = document.getElementById('mobile-menu');
+    if (menu) menu.classList.remove('open');
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.getElementById('mobile-menu')?.classList.remove('open');
+      }
+    });
+  });
+});
+
+
+
+</script></body></html>
