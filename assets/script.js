@@ -1,14 +1,5 @@
-const PRICE_PER_LITER = 0.70;
 const MIN_LITERS = 500;
 const COOKIE_CONSENT_KEY = "heoilyCookieConsent";
-
-function formatCurrency(value) {
-  return value.toLocaleString("de-DE", {
-    style: "currency",
-    currency: "EUR",
-    minimumFractionDigits: 2
-  });
-}
 
 function calcPrice() {
   const litersInput = document.getElementById("c-liters");
@@ -25,13 +16,9 @@ function calcPrice() {
   }
 
   litersInput.style.borderColor = "#16724A";
-  const total = liters * PRICE_PER_LITER;
-  const vat = total - total / 1.19;
-
   document.getElementById("res-liters").textContent = `${liters.toLocaleString("de-DE")} Liter`;
-  document.getElementById("res-price").textContent = `${formatCurrency(PRICE_PER_LITER)} / Liter inkl. MwSt.`;
-  document.getElementById("res-total").textContent = formatCurrency(total);
-  document.getElementById("res-vat").textContent = `Enthaltene 19% MwSt.: ${formatCurrency(vat)}`;
+  document.getElementById("res-status").textContent = "Anfrage bereit";
+  document.getElementById("res-next-step").textContent = "Per Telefon oder WhatsApp abstimmen";
   resultBox.style.display = "block";
 }
 
